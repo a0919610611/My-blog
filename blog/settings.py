@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'article',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -123,3 +124,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static'),]
 STATIC_ROOT=os.path.join(BASE_DIR,'static_root')
+
+#Admin
+ADMINS=(
+        ('Yu-Fu,Fu','a0919610611@gmail.com'),
+        )
