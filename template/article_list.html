@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if articles %}
+  <table>
+    <tr><td>Article Name</td><td>Article Time</td></tr>
+    {% for article in articles %}
+    <tr>
+      <td><a href='/article/{{article.id}}/'>{{article.date_time}}</a></td><td>{{article.title}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p> 目前沒有半篇文章! </p>
+  {% endif %}
+{% endblock %}

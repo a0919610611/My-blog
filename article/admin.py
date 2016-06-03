@@ -4,4 +4,4 @@ from models import *
 #class ArticleAdmin(admin.ModelAdmin):
 
 admin.site.register(Article)
-    
+admin.site.register(Category)   

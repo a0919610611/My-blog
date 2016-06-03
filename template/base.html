@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang='en'>
+{% block header%}
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Leo's Blog" />
+    <meta name="author" cotent="LeoFu"/>
+    <title>{% block title%} Leo's Blog{% endblock %}</title>
+  </head>
+  {% endblock %}
+  <body>
+  {% block content %}
+  {% endblock %}
+  </body>
+{% block footer %}
+{% endblock %}
+</html>
