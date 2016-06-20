@@ -2,15 +2,26 @@
 <!DOCTYPE html>
 <html lang='en'>
 {% block header%}
+      <style type="text/css">
+        body{color:#efd;background:#453;padding:0 5em;margin:0}
+        h1{padding:2em 1em;background:#675;text-align: center}
+        h2{color:#bf8;border-top:1px dotted #fff;margin-top:2em}
+        p{margin:1em 0}
+      </style>
+
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Leo's Blog" />
     <meta name="author" cotent="LeoFu"/>
     <title>{% block title%} Leo's Blog{% endblock %}</title>
+    {% block css %}
+    {% endblock %}
   </head>
   {% endblock %}
   <body>
+  <a href='{% url 'aboutme' %}'> About Me </a>
+  <a href="{% url 'article_list' %}">All Articles List</a>
   {% block content %}
   {% endblock %}
   </body>

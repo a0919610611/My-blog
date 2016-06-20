@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import *
-from models import *
+from .models import *
 from datetime import datetime
 
 # Create your views here.
-def home(request):
+def article_list(request):
     articles=Article.objects.all()
     return render(request,'article_list.html',locals())
 def detail(request,id):
