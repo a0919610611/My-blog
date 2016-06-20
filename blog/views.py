@@ -11,10 +11,10 @@ def aboutme (request):
     return render(request,'aboutme.html',locals())
 def create_article(request):
     if request.method=='POST':
-        title=requst.POST['title']
+        title=request.POST['title']
         category=request.POST['category']
         content=request.POST['content']
-        Article.objects.create(title=title,category=category,content=content)
+        Article.objects.create(title=title,content=content)
         return HttpResponseRedirect(reverse('blog.views.homepage'))
     form=Articleform()
     return render(request,'create_article.html',locals())

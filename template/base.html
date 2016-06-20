@@ -3,9 +3,9 @@
 <html lang='en'>
 {% block header%}
       <style type="text/css">
-        body{color:#efd;background:#453;padding:0 5em;margin:0}
-        h1{padding:2em 1em;background:#675;text-align: center}
-        h2{color:#bf8;border-top:1px dotted #fff;margin-top:2em}
+        body{color:#efd;background:rgb(85, 86, 88);padding:0 5em;margin:0}
+        h1{padding:2em 1em;background:#e822bc;text-align: center}
+        h2{color:#1d73d7;border-top:1px dotted #fff;margin-top:2em}
         p{margin:1em 0}
       </style>
 
@@ -19,7 +19,7 @@
     {% endblock %}
   </head>
   {% endblock %}
-  <body>
+    <a href='{% url 'homepage' %}'> HomePage </a><body>
   <a href='{% url 'aboutme' %}'> About Me </a>
   <a href="{% url 'article_list' %}">All Articles List</a>
   {% block content %}
