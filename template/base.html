@@ -2,13 +2,6 @@
 <!DOCTYPE html>
 <html lang='en'>
 {% block header%}
-      <style type="text/css">
-        body{color:#efd;background:rgb(85, 86, 88);padding:0 5em;margin:0}
-        h1{padding:2em 1em;background:#e822bc;text-align: center}
-        h2{color:#1d73d7;border-top:1px dotted #fff;margin-top:2em}
-        p{margin:1em 0}
-      </style>
-
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,13 +12,17 @@
     {% endblock %}
   </head>
   {% endblock %}
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <body>
   <a href='{% url 'homepage' %}'>HomePage</a>
   <a href='{% url 'aboutme' %}'> About Me </a>
   <a href="{% url 'article:article_list' %}">All Articles List</a>
   <a href="/admin/">Admin</a>
+  <a href="{% url 'article:article_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
   {% if request.user.is_superuser %}
-  <a href="{% url 'create_article' %}"> Create Article </a>
+  <a class="glyphicon glyphicon-pencil" href="{% url 'create_article' %}"></a>
   <a href="{% url 'logout' %}"> Log out </a>
   {% endif %}
   {% block content %}

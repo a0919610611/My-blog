@@ -34,6 +34,15 @@ def create_article(request):
         return HttpResponseRedirect('/')
     form=Articleform()
     return render(request,'create_article.html',locals())
+def edit_article(request,article_id):
+    article=Article.objects.get(pk=article_id)
+    if request.method=='POST':
+        form=Articleform(request.POST,instance=article)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    form=Articleform(instance=article)
+    return render(request,'edit_article.html',locals())
 def log_out(request):
     logout(request)
     return HttpResponseRedirect('/')

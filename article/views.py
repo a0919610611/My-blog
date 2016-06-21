@@ -5,8 +5,11 @@ from datetime import datetime
 from django.views.generic import DetailView,ListView
 
 def article_list(request):
-    article_list=Article.objects.all()
+    article_list=Article.objects.all().filter(status='p')
     return render(request,'article_list.html',locals())
+def article_draft_list(request):
+    article_list=Article.objects.all().filter(status='d')
+    return render(request,'draft_list.html',locals())
 class ArticleDetailView(DetailView):
     model=Article
     template_name='detail.html'

@@ -17,11 +17,17 @@ class Article (models.Model):
     create_time=models.DateTimeField('創建時間',auto_now_add=True)
     last_modified_time=models.DateTimeField('修改時間',auto_now=True)
     content=models.TextField('正文',blank=True,null=True)
-    status=models.CharField('文章狀態',max_length=1,choices=STATUS_CHOICES)
+    status=models.CharField('文章狀態',max_length=1,choices=STATUS_CHOICES,default='d')
     abstract=models.CharField('摘要',max_length=30,blank=True,null=True,help_text='空白，則為前30字')
     views=models.PositiveIntegerField('瀏覽量',default=0)
     likes=models.PositiveIntegerField('讚數',default=0)
     topped=models.BooleanField('置頂',default=False)
+    def publish(self):
+        self.status='p'
+        self.save()
+    def unpublish(self):
+        self.status='d'
+        self.save()
     def __str__ (self):
         return self.title;
     class Meta:
