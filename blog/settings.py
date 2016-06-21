@@ -56,7 +56,7 @@ MIDDLEWARE_CLASSES = [
 ROOT_URLCONF = 'blog.urls'
 
 TEMPLATES = [
-    {
+        {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR,'template'),],
         'APP_DIRS': True,
@@ -68,7 +68,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
-    },
+        },
 ]
 
 WSGI_APPLICATION = 'blog.wsgi.application'
@@ -78,12 +78,14 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blogdb',
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'blogdb',
         'USER':'dbadmin',
         'PASSWORD':'123456',
-    }
+        'HOST':'127.0.0.1',
+        'PORT':'5432'
+    },
 }
 
 
