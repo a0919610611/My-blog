@@ -19,9 +19,15 @@
     {% endblock %}
   </head>
   {% endblock %}
-    <a href='{% url 'homepage' %}'> HomePage </a><body>
+  <a href='{% url 'homepage' %}'> HomePage </a><body>
   <a href='{% url 'aboutme' %}'> About Me </a>
   <a href="{% url 'article_list' %}">All Articles List</a>
+  {% if request.user.is_superuser %}
+  <a href="{% url 'create_article' %}"> Create Article </a>
+  <a href="{% url 'logout' %}"> Log out </a>
+  {% else %}
+  <a href="/admin/">Admin</a>
+  {% endif %}
   {% block content %}
   {% endblock %}
   </body>

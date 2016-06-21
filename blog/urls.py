@@ -17,9 +17,10 @@ from django.conf.urls import *
 from django.contrib import admin
 from . import views
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls,name='admin'),
     url(r'^$',views.homepage,name='homepage'),
     url(r'^aboutme/$',views.aboutme,name='aboutme'),
+    url(r'^logout/$',views.log_out,name='logout'),
     url(r'^create_article/$',views.create_article,name='create_article'),
     url(r'^article/',include('article.urls')),
 ]
