@@ -2,14 +2,13 @@ from django.shortcuts import render
 from django.http import *
 from .models import *
 from datetime import datetime
+from django.views.generic import DetailView,ListView
 
-# Create your views here.
 def article_list(request):
-    articles=Article.objects.all()
+    article_list=Article.objects.all()
     return render(request,'article_list.html',locals())
-def detail(request,id):
-    try:
-        post=Article.objects.get(id=id)
-    except Article.DoesNotExist:
-        raise Http404
-    return render(request,'detail.html',locals())
+class ArticleDetailView(DetailView):
+    model=Article
+    template_name='detail.html'
+    context_object_name="article"
+    pk_url_kwarg = 'article_id'

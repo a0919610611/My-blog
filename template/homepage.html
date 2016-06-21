@@ -5,8 +5,8 @@
 {% endblock %}
 {% block content %}
 <h1> hello ,this is Leo's website </h1>
-{% for article in articles %}
-<h2> {{article.title}} </h2>
+{% for article in article_list %}
+<h2><a href="{% url 'article:detail' article.pk %}"> {{article.title}}</a> </h2>
 <p>{{article.content}} </p>
 {% endfor %}
 {% endblock %}

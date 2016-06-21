@@ -1,2 +1,2 @@
 # My-blog
-Create my own blog and practice django using python3 + Postgresql +nginx
+Create my own blog and practice Django using Python3 + Postgresql +Nginx

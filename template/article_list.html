@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-  {% if articles %}
+  {% if article_list %}
   <table>
     <tr><td>Article Name</td><td>Article Time</td></tr>
-    {% for article in articles %}
+    {% for article in article_list %}
     <tr>
-      <td><a href='/article/{{article.id}}/'>{{article.title}}</a></td><td><{{article.date_time}}/td>
+      <td><a href='/article/{{article.id}}/'>{{article.title}}</a></td><td><{{article.last_modified_time}}/td>
     </tr>
     {% endfor %}
   </table>
