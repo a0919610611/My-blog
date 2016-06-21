@@ -28,6 +28,8 @@ class Article (models.Model):
     def unpublish(self):
         self.status='d'
         self.save()
+    def is_published(self):
+        return self.status=='p'
     def __str__ (self):
         return self.title;
     class Meta:
