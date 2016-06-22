@@ -15,6 +15,11 @@ def publish(request,article_id):
     article.publish()
     article.save()
     return HttpResponseRedirect(reverse('article:detail',kwargs={'article_id':article_id}))
+def unpublish(request,article_id):
+    article=Article.objects.get(pk=article_id)
+    article.unpublish()
+    article.save()
+    return HttpResponseRedirect(reverse('article:detail',kwargs={'article_id':article_id}) )
 class ArticleDetailView(DetailView):
     model=Article
     template_name='detail.html'

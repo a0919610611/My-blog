@@ -80,12 +80,14 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 DATABASES = {
     'default':{
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME':'blogdb',
         'USER':'dbadmin',
         'PASSWORD':'123456',
-        'HOST':'localhost',
-        'PORT':''
+        'OPTIONS': {
+            'autocommit': True,
+                              
+            },
     },
 }
 
