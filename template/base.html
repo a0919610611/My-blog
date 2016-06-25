@@ -18,12 +18,16 @@
   <body>
   <a href='{% url 'homepage' %}'>HomePage</a>
   <a href='{% url 'aboutme' %}'> About Me </a>
-  <a href="{% url 'article:article_list' %}">All Articles List</a>
-  <a href="/admin/">Admin</a>
-  <a href="{% url 'article:article_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+  <a href="{% url 'article:article_list' %}">Articles List</a>
+  {% if not request.user.is_superuser %}
+  <a href="admin/login/?next=/">Admin</a>
+  {% endif %}
   {% if request.user.is_superuser %}
+  <a href ={% url 'article:admin_article_list' %} > Admin Article List</a>
   <a class="glyphicon glyphicon-pencil" href="{% url 'create_article' %}"></a>
-  <a href="{% url 'logout' %}"> Log out </a>
+  <a href="{% url 'article:article_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+  <a href="/admin/">Admin</a>
+  <a href="{% url 'logout' %}"> Logout </a>
   {% endif %}
   {% block content %}
   {% endblock %}

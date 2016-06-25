@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.urlresolvers import reverse
 # Create your models here.
 class Category(models.Model):
     name=models.CharField('類名',max_length=50,blank=True)
@@ -13,7 +13,7 @@ class Article (models.Model):
         ('p','Published'),
     )
     title=models.CharField('標題',max_length=100)
-    category=models.ForeignKey('Category',verbose_name='分類',null=True,blank=True,on_delete=models.SET_NULL)
+    category=models.ForeignKey('Category',on_delete=models.SET_NULL,verbose_name='分類',null=True,blank=True)
     create_time=models.DateTimeField('創建時間',auto_now_add=True)
     last_modified_time=models.DateTimeField('修改時間',auto_now=True)
     content=models.TextField('正文',blank=True,null=True)
@@ -22,6 +22,8 @@ class Article (models.Model):
     views=models.PositiveIntegerField('瀏覽量',default=0)
     likes=models.PositiveIntegerField('讚數',default=0)
     topped=models.BooleanField('置頂',default=False)
+    def get_absolute_url(self):
+        return reverse('article:detail',kwargs={'article_id':self.pk})
     def publish(self):
         self.status='p'
         self.save()
@@ -34,3 +36,11 @@ class Article (models.Model):
         return self.title;
     class Meta:
         ordering=['-last_modified_time'] #from new to old
+class BlogComment(models.Model):
+    user_name=models.CharField('Name',max_length=100)
+    user_email=models.EmailField('Email',max_length=255)
+    content=models.TextField('Content')
+    create_time=models.DateTimeField('Created Time',auto_now_add=True)
+    article=models.ForeignKey('Article',on_delete=models.CASCADE,verbose_name='Commented Article')
+    def __str__(self):
+        return self.content[:20]

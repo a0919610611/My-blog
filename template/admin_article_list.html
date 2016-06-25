@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% block content %}
   {% if article_list %}
@@ -6,6 +7,13 @@
     {% for article in article_list %}
     <tr>
       <td><a href='/article/{{article.id}}/'>{{article.title}}</a></td><td>{{article.last_modified_time}}</td>
+      <td>
+            {% if not article.is_published %}
+              <a class="btn btn-default" href="{% url 'article:publish' article.pk %}">Publish</a>
+            {% else %}
+              <a class="btn btn-default" href="{% url 'article:unpublish' article.pk %}">Unpublish</a>
+            {% endif %}
+      </td>
     </tr>
     {% endfor %}
   </table>
