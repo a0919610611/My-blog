@@ -13,16 +13,16 @@
             <button type="submit" class="com-button">Submit</button>
         </form>
         {% if comment_list %}
-        <p class="comment-count">All {{comment_list.count}} Comment{{comment_list.count|pluralize}}</p>
+        <p>All {{comment_list.count}} Comment{{comment_list.count|pluralize}}</p>
         {% else %}
         <p>There is no comment.</p>
         {% endif %}
         <hr>
         {% for comment in comment_list %}
             <div class="main-content">
-                <span class="user-nickname">{{ comment.user_name }}</span>
-                <time class="time">{{ comment.created_time }}</time>
-                <div class="comment-content">
+                <span >{{ comment.user_name }}</span>
+                <time>{{ comment.created_time }}</time>
+                <div >
                     {{ comment.content }}
                 </div>
             </div>

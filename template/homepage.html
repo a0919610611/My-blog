@@ -7,6 +7,6 @@
 <h1> hello ,this is Leo's website </h1>
 {% for article in article_list %}
 <h2><a href="{% url 'article:detail' article.pk %}"> {{article.title}}</a> </h2>
-<p>{{article.content}} </p>
+{{article.content | safe}}
 {% endfor %}
 {% endblock %}

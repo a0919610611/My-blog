@@ -12,8 +12,8 @@ class HomePageView(ListView):
     context_object_name="article_list"
     def get_queryset(self):
         article_list=Article.objects.filter(status='p')
-        #for article in article_list:
-            #article.content=markdown2.markdown(article.content,)
+        for article in article_list:
+            article.content=markdown2.markdown(article.content, extras=['fenced-code-blocks'],)
         return article_list
     def get_context_data(self,**kwargs):
         kwargs['category_list']=Category.objects.all().order_by('name')
@@ -30,11 +30,14 @@ def create_article(request):
         title=request.POST['title']
         category=request.POST['category']
         content=request.POST['content']
-        Article.objects.create(title=title,content=content)
+        status=request.POST['status']
+        Article.objects.create(title=title,content=content,status=status)
         return HttpResponseRedirect('/')
     form=Articleform()
     return render(request,'create_article.html',locals())
 def edit_article(request,article_id):
+    if not request.user.is_superuser:
+        return HttpResponseRedirect('/')
     article=Article.objects.get(pk=article_id)
     if request.method=='POST':
         form=Articleform(request.POST,instance=article)

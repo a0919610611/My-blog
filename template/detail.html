@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>{{article.title}} </h1>
-<p>{{article.content}}</p>
+{{article.content | safe}}
 {% if request.user.is_superuser %}
 {% if not article.is_published %}
 <a class="btn btn-default" href="{% url 'article:publish' article.pk %}">Publish</a>
 {% else %}
 <a class="btn btn-default" href="{% url 'article:unpublish' article.pk %}">Unpublish</a>
 {% endif %}
+<a class="btn btn-default" href="{% url 'edit_article' article.pk %}">Edit</a>
 {% endif %}
  {% include 'comment.html' %}
 {% endblock %}

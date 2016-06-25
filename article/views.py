@@ -6,12 +6,15 @@ from django.views.generic import *
 from django.core.urlresolvers import *
 from django.views.generic.edit import *
 from blog.forms import *
+import markdown2
 def article_list(request):
     article_list=Article.objects.all().filter(status='p')
     return render(request,'article_list.html',locals())
 def article_draft_list(request):
     if request.user.is_superuser:
         article_list=Article.objects.all().filter(status='d')
+        for article in article_list:
+            article.content=markdown2.markdown(article.content,extras=['fenced-code-blocks'],)
         return render(request,'draft_list.html',locals())
     else:
         return HttpResponseRedirect('/')
@@ -35,6 +38,10 @@ class ArticleDetailView(DetailView):
     template_name='detail.html'
     context_object_name="article"
     pk_url_kwarg = 'article_id'
+    def get_object(self, queryset=None):
+        obj = super(ArticleDetailView, self).get_object()
+        obj.content = markdown2.markdown(obj.content, extras=['fenced-code-blocks'], )
+        return obj
     def get_context_data(self, **kwargs):
         kwargs['comment_list'] = self.object.blogcomment_set.all()
         kwargs['form'] = BlogCommentForm()

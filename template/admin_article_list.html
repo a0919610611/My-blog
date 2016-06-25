@@ -14,6 +14,9 @@
               <a class="btn btn-default" href="{% url 'article:unpublish' article.pk %}">Unpublish</a>
             {% endif %}
       </td>
+      <td>
+            <a class="btn btn-default" href="{% url 'edit_article' article.pk %}">Edit</a>
+      </td>
     </tr>
     {% endfor %}
   </table>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'article',
     'markdown2',
+    'pygments',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -86,7 +87,7 @@ DATABASES = {
         'PASSWORD':'123456',
         'OPTIONS': {
             'autocommit': True,
-                              
+
             },
     },
 }

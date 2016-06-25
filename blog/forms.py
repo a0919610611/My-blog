@@ -3,7 +3,7 @@ from article.models import *
 class Articleform(forms.ModelForm):
     class Meta:
         model=Article
-        fields=['title','category','content',]
+        fields=['title','category','content','status']
 class BlogCommentForm(forms.ModelForm):
     class Meta:
         model=BlogComment
