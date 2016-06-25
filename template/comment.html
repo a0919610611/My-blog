@@ -15,7 +15,7 @@
         {% if comment_list %}
         <p>All {{comment_list.count}} Comment{{comment_list.count|pluralize}}</p>
         {% else %}
-        <p>There is no comment.</p>
+        <p>There is no comment for this article.</p>
         {% endif %}
         <hr>
         {% for comment in comment_list %}

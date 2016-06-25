@@ -4,7 +4,7 @@
 	<link rel="stylesheet"type="text/css" href="{% static 'css/homepage.css' %}"/>
 {% endblock %}
 {% block content %}
-<h1> hello ,this is Leo's website </h1>
+<h1> Hello ,this is Leo's Blog </h1>
 {% for article in article_list %}
 <h2><a href="{% url 'article:detail' article.pk %}"> {{article.title}}</a> </h2>
 {{article.content | safe}}
