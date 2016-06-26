@@ -9,6 +9,12 @@ class Category(models.Model):
     last_modified_time=models.DateTimeField('修改時間',auto_now=True)
     def __str__(self):
         return  self.name
+class Tag(models.Model):
+    name=models.CharField('Tag Name',max_length=20)
+    create_time=models.DateTimeField('Create Time',auto_now_add=True)
+    last_modified_time = models.DateTimeField('Modified Time', auto_now=True)
+    def __str__(self):
+        return self.name
 class Article (models.Model):
     STATUS_CHOICES=(
         ('d','Draft'),
@@ -24,6 +30,7 @@ class Article (models.Model):
     views=models.PositiveIntegerField('瀏覽量',default=0)
     likes=models.PositiveIntegerField('讚數',default=0)
     topped=models.BooleanField('置頂',default=False)
+    tags = models.ManyToManyField('Tag', verbose_name='標籤集合', blank=True)
     def get_absolute_url(self):
         return reverse('article:detail',kwargs={'article_id':self.pk})
     def publish(self):

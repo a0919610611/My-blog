@@ -4,6 +4,11 @@
 	<link rel="stylesheet"type="text/css" href="{% static 'css/homepage.css' %}"/>
 {% endblock %}
 {% block content %}
+<ul>
+  {% for category in category_list %}
+  <li><a href="{% url 'article:category' category.pk %}">{{category.name}}</a></li>
+  {% endfor %}
+</ul>
 <h1> Hello ,this is Leo's Blog </h1>
 {% for article in article_list %}
 <h2><a href="{% url 'article:detail' article.pk %}"> {{article.title}}</a> </h2>

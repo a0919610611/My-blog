@@ -7,6 +7,18 @@ from django.core.urlresolvers import *
 from django.views.generic.edit import *
 from blog.forms import *
 import markdown2
+class ArticleListView(ListView):
+    template_name='article_list.html'
+    context_object_name='article_list'
+    def get_queryset(self):
+        article_list = Article.objects.filter(status='p')
+        for article in article_list:
+            article.content = markdown2.markdown(article.content,extras=['fenced-code-blocks'],)
+        return article_list
+    def get_context_data(self, **kwargs):
+        kwargs['category_list'] = Category.objects.all().order_by('name')
+        kwargs['tag_list'] = Tag.objects.all().order_by('name')
+        return super(ArticleListView, self).get_context_data(**kwargs)
 def article_list(request):
     article_list=Article.objects.all().filter(status='p')
     return render(request,'article_list.html',locals())
@@ -52,6 +64,18 @@ class ArticleDetailView(DetailView):
         kwargs['comment_list'] = self.object.blogcomment_set.all()
         kwargs['form'] = BlogCommentForm()
         return super(ArticleDetailView, self).get_context_data(**kwargs)
+class CategoryView(ListView):
+
+    template_name = "article_list.html"
+    context_object_name = "article_list"
+    def get_queryset(self):
+        article_list = Article.objects.filter(category=self.kwargs['category_id'],status='p')
+        for article in article_list:
+            article.content = markdown2.markdown(article.content,extras=['fenced-code-blocks'],)
+        return article_list
+    def get_context_data(self, **kwargs):
+        kwargs['category_list'] = Category.objects.all().order_by('name')
+        return super(CategoryView, self).get_context_data(**kwargs)
 class CommentPostView(FormView):
     form_class=BlogCommentForm
     template_name='detail.html'
