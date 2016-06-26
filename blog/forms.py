@@ -25,6 +25,8 @@ class BlogCommentForm(forms.ModelForm):
             'content':forms.Textarea(
                 attrs={
                     'placeholder':'Comment Some',
+                    'rows':'10',
+                    'cols':'100',
                 }
             ),
         }

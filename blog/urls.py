@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import *
 from django.contrib import admin
 from . import views
+from django.conf.urls.static import static
+from . import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.HomePageView.as_view(),name='homepage'),
@@ -24,4 +26,4 @@ urlpatterns = [
     url(r'^create_article/$',views.create_article,name='create_article'),
     url(r'^edit_article/(?P<article_id>\d+)/$',views.edit_article,name='edit_article'),
     url(r'^article/',include('article.urls',namespace='article')),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

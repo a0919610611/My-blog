@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+#from .urls import *
+#from blog.urls import *
 # Create your models here.
 class Category(models.Model):
     name=models.CharField('類名',max_length=50,blank=True)
@@ -38,9 +40,20 @@ class Article (models.Model):
         ordering=['-last_modified_time'] #from new to old
 class BlogComment(models.Model):
     user_name=models.CharField('Name',max_length=100)
-    user_email=models.EmailField('Email',max_length=255)
+    user_email=models.EmailField('Email',max_length=255,null=True,blank=True)
     content=models.TextField('Content')
     create_time=models.DateTimeField('Created Time',auto_now_add=True)
     article=models.ForeignKey('Article',on_delete=models.CASCADE,verbose_name='Commented Article')
     def __str__(self):
         return self.content[:20]
+class Photo(models.Model):
+    name=models.CharField('Photo Name',max_length=100,blank=True)
+    image=models.ImageField(upload_to='photo/%Y/%m/%d')
+    description=models.CharField('Photo description',max_length=100,null=True,blank=True)
+    create_time=models.DateTimeField("Created Time",auto_now_add=True)
+    def __str__(self):
+        return self.name
+    class Meta:
+        ordering=['-create_time']
+    #def get_absolute_url(self):
+        #return reverse('')
