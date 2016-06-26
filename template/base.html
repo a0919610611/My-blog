@@ -28,7 +28,7 @@
               <li><a href="{% url 'article:article_list' %}">Articles List</a></li>
               <ul class="nav navbar-nav navbar-right">
   {% if not request.user.is_superuser %}
-                  <li class="nav navbar-nav navbar-right"><a href="admin/login/?next=/"><span class="glyphicon glyphicon-log-in"></span>Admin</a></li>
+                  <li class="nav navbar-nav navbar-right"><a href="/admin/login/?next=/"><span class="glyphicon glyphicon-log-in"></span>Admin</a></li>
   {% else %}
                   <li><a href ={% url 'article:admin_article_list' %} > Admin Article List</a></li>
                   <li><a class="glyphicon glyphicon-pencil" href="{% url 'create_article' %}"></a></li>

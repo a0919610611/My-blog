@@ -38,6 +38,12 @@ class ArticleDetailView(DetailView):
     template_name='detail.html'
     context_object_name="article"
     pk_url_kwarg = 'article_id'
+    def get(self,request,*args,**kwargs):
+        obj=self.get_object()
+        if obj.status=='d' and not request.user.is_superuser:
+            return HttpResponseRedirect('/')
+        else:
+            return super(ArticleDetailView,self).get(self,request,*args,**kwargs)
     def get_object(self, queryset=None):
         obj = super(ArticleDetailView, self).get_object()
         obj.content = markdown2.markdown(obj.content, extras=['fenced-code-blocks'], )
