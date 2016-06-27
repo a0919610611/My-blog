@@ -13,20 +13,20 @@ class BlogCommentForm(forms.ModelForm):
             'user_name':forms.TextInput(
                 attrs={
                 'class':'form-control',
-                'placeholder':'Your Name',
+                'placeholder':'名子',
                 'aria-describedby':'sizing-addon1',
             }),
             'user_email':forms.TextInput(
                 attrs={
                 'class':'form-control',
-                'placeholder':'Your Email',
+                'placeholder':'信箱(非必要，不會顯示)',
                 'aria-describedby':'sizing-addon1',
             }),
             'content':forms.Textarea(
                 attrs={
-                    'placeholder':'Comment Some',
-                    'rows':'10',
-                    'cols':'100',
+                    'class':'form-control',
+                    'placeholder':'想說的話',
+                    'aria-describedly':'sizing-addon1'
                 }
             ),
         }

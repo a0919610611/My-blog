@@ -1,45 +1,43 @@
-<div id="pagenavi" class="noselect">
+<nav style="text-align: center">
+<ul class="pagination pagination-lg" >
     {% if article_list.has_previous %}
-        <a class="previous-page" href="?page={{ article_list.previous_page_number }}">
-            <span class="icon-previous"></span>
-        </a>
+       <li> <a  aria-label="Previous" href="?page={{ article_list.previous_page_number }}">
+            <span aria-hidden="true">Prev</span></li>
+        </a><li>
+        {%  else  %}
+        <li class="disabled"><span aria-hidden="true" disabled>Prev</span></li>
     {% endif %}
     {% if first_page == current_page %}
-        <span class="first-page current">1</span>
+      <li class="active"> <span>1</span></li>
     {% else %}
-        <a href="?page=1" class="first-page">1</a>
+       <li> <a href="?page=1" class="first-page">1</a></li>
     {% endif %}
-
     {% if pages_first > 2 %}
-        <span>...</span>
+        <li><span>...</span></li>
     {% endif %}
-
     {% for page in pages %}
         {% if page == current_page %}
-            <span class="current">{{ page }}</span>
+           <li class="active"> <span >{{ page }}</span></li>
         {% else %}
-            <a href="?page={{ page }}">{{ page }}</a>
+            <li><a href="?page={{ page }}">{{ page }}</a></li>
         {% endif %}
     {% endfor %}
-
-
     {% if pages_last < last_page %}
-        <span>...</span>
+       <li> <span>...</span></li>
     {% endif %}
-
-
     {% if last_page != 1 %}
         {% if last_page == current_page %}
-            <span class="current">{{ last_page }}</span>
+           <li class="active"> <span class="current">{{ last_page }}</span></li>
         {% else %}
-            <a href="?page={{ last_page }}">{{ last_page }}</a>
+            <li><a href="?page={{ last_page }}">{{ last_page }}</a></li>
         {% endif %}
     {% endif %}
-
-
     {% if article_list.has_next %}
-        <a class="next-page" href="?page={{ article_list.next_page_number }}">
-            下一頁<span class="icon-next"></span>
-        </a>
+    <li>    <a aria-label="Next" href="?page={{ article_list.next_page_number }}">
+            <span aria-hidden="true">Next</span>
+        </a> </li>
+        {%  else %}
+          <li class="disabled"><span aria-hidden="true" disabled>Next</span></li>
     {% endif %}
-</div>
+</ul>
+</nav>

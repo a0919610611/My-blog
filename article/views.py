@@ -19,9 +19,6 @@ class ArticleListView(ListView):
         kwargs['category_list'] = Category.objects.all().order_by('name')
         kwargs['tag_list'] = Tag.objects.all().order_by('name')
         return super(ArticleListView, self).get_context_data(**kwargs)
-def article_list(request):
-    article_list=Article.objects.all().filter(status='p')
-    return render(request,'homepage.html',locals())
 def article_draft_list(request):
     if request.user.is_superuser:
         article_list=Article.objects.all().filter(status='d')
@@ -37,13 +34,11 @@ def publish(request,article_id):
     article=Article.objects.get(pk=article_id)
     article.publish()
     article.save()
-    #return HttpResponseRedirect(reverse('article:detail',kwargs={'article_id':article_id}))
     return HttpResponseRedirect(reverse('article:admin_article_list'))
 def unpublish(request,article_id):
     article=Article.objects.get(pk=article_id)
     article.unpublish()
     article.save()
-    #return HttpResponseRedirect(reverse('article:detail',kwargs={'article_id':article_id}))
     return HttpResponseRedirect(reverse('article:admin_article_list'))
 class ArticleDetailView(DetailView):
     model=Article
@@ -75,6 +70,7 @@ class CategoryView(ListView):
         return article_list
     def get_context_data(self, **kwargs):
         kwargs['category_list'] = Category.objects.all().order_by('name')
+        kwargs['tag_list'] = Tag.objects.all().order_by('name')
         return super(CategoryView, self).get_context_data(**kwargs)
 class CommentPostView(FormView):
     form_class=BlogCommentForm
@@ -93,3 +89,14 @@ class CommentPostView(FormView):
             'article': target_article,
             'comment_list': target_article.blogcomment_set.all(),
         })
+class TagView(ListView):
+    template_name = 'homepage.html'
+    context_object_name = 'article_list'
+    def get_queryset(self):
+        article_list=Article.objects.all().filter(tags=self.kwargs['tag_id'],status='p')
+        for article in article_list:
+            article.content=markdown2.markdown(article.content,extras=['fenced-code-blocks'],)
+        return article_list
+    def get_context_data(self, **kwargs):
+        kwargs['tag_list']=Tag.objects.all().order_by('name')
+        return super(TagView,self).get_context_data(**kwargs)

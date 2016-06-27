@@ -6,3 +6,5 @@ from .models import *
 admin.site.register(Article)
 admin.site.register(Category)
 admin.site.register(Photo)
+admin.site.register(Tag)
+admin.site.register(BlogComment)

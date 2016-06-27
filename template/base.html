@@ -10,16 +10,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title%} Leo's Blog{% endblock %}</title>
     {% block css %}
+
     {% endblock %}
 
   </head>
   {% endblock %}
+
 <link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
+
 <link rel="stylesheet" href="{% static 'css/github.css' %}">
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
 <script src=" {% static 'js/bootstrap.min.js' %}"></script>
-<body style="background-color:rgba(22, 99, 20, 0.12);padding-top: 70px;">
+
+<style type="text/css">
+</style>
+<body style="background-color: #ebebeb;padding-top: 70px;">
     <div class="container">
       <div class="nav navbar-default navbar-fixed-top">
          <div class="container-fluid">
@@ -40,10 +46,10 @@
               </ul>
           </ul>
         </div>
-    </div>
+  </div>
   {% block content %}
   {% endblock %}
-  </div>
+    </div>
 </body>
 {% block footer %}
 {% endblock %}

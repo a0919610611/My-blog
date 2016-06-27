@@ -17,10 +17,8 @@ class HomePageView(ListView):
         return article_list
     def get_context_data(self,**kwargs):
         kwargs['category_list']=Category.objects.all().order_by('name')
+        kwargs['tag_list']=Tag.objects.all().order_by('name')
         return super(HomePageView,self).get_context_data(**kwargs)
-def homepage (request):
-    articles=Article.objects.all()
-    return render(request,'homepage.html',locals())
 def aboutme (request):
     return render(request,'aboutme.html',locals())
 def create_article(request):

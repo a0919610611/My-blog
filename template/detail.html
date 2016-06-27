@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>{{article.title}} </h1>
+<h1 align="center">{{article.title}} </h1>
+    <div class="col-lg-12" >
 {{article.content | safe}}
 {% if request.user.is_superuser %}
 {% if not article.is_published %}
@@ -11,4 +12,5 @@
 <a class="btn btn-default" href="{% url 'edit_article' article.pk %}">Edit</a>
 {% endif %}
  {% include 'comment.html' %}
+    </div>
 {% endblock %}

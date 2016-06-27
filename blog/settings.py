@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'article',
     'markdown2',
     'pygments',
+    'bootstrap3',
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -1,22 +1,56 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-
 {% block css %}
+
 	<link rel="stylesheet"type="text/css" href="{% static 'css/homepage.css' %}"/>
 {% endblock %}
 {% block content %}
-<ul class="nav nav-tabs">
-  <li><a href="{% url 'article:article_list' %}">All article</a></li>
+        <div class="row">
+            <div class="col-lg-9">
+            <div id="category" class="noselect">
+            <div id="category-title">
+<ul >
+  <li>分類:</li>
+  <li class="cat-item"><a href="{% url 'article:article_list' %}">全部文章</a></li>
   {% for category in category_list %}
-  <li><a href="{% url 'article:category' category.pk %}">{{category.name}}</a></li>
+  <li calss="cat-item"><a href="{% url 'article:category' category.pk %}">{{category.name}}</a></li>
   {% endfor %}
 </ul>
+            </div>
+            </div>
 <!--<h1> Hello ,this is Leo's Blog </h1> -->
+            <div id="bd" class="wrp clearfix">
     {% load paginate_tags %}
-{% paginate article_list 2 %}
+{% paginate article_list 5 %}
 {% for article in article_list %}
-<h2><a href="{% url 'article:detail' article.pk %}"> {{article.title}}</a> </h2>
-{{article.content | safe}}
+    <div style="background-color: white ;">
+    <div>
+    <h2 align="center"><a href="{% url 'article:detail' article.pk %}"> {{article.title}}</a> </h2>
+        </div>
+        <div>
+        {{article.content | safe}}
+        </div>
+        <hr>
+        <div>
+        <a style="float: right ;background-color: #f7ecb5" href="{%  url 'article:detail' article.pk %}">閱讀更多</a>
+
+        </div>
+      <div class="spacer" style="clear: both;"></div>
+    </div>
 {% endfor %}
-    {% include 'pagination.html' %}
+                {% include 'pagination.html' %}
+            </div>
+                </div>
+
+            <div class="col-lg-3">
+        <!-- tags -->
+                <h3 align="center">標籤:</h3>
+                <div class="list-group">
+                {% for tag in tag_list %}
+                <a href="{% url 'article:tag' tag.pk %}" class="list-group-item"><span
+                        class="badge"></span>{{ tag.name }}</a>
+                {% endfor %}
+                 </div>
+            </div>
+        </div>
 {% endblock %}

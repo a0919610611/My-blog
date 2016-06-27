@@ -1,17 +1,19 @@
-        <p >Comment</p>
+        <h2 align="center">有什麼想說的嘛?</h2>
         <form method="post" action="{% url 'article:comment' article.pk %}">
             {% csrf_token %}
+                <div class="row">
                 {% for field in form %}
                     {{ field }}
                     {{ field.errors }}
                     <br>
                 {% endfor %}
             <button type="submit" class="">Submit</button>
+                </div>
         </form>
         {% if comment_list %}
         <p>All {{comment_list.count}} Comment{{comment_list.count|pluralize}}</p>
         {% else %}
-        <p>There is no comment for this article.</p>
+        <h2 align="center">沒有評論</h2>
         {% endif %}
         <hr>
         
