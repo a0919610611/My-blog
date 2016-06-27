@@ -37,7 +37,7 @@ def create_article(request):
     return render(request,'create_article.html',locals())
 def edit_article(request,article_id):
     if not request.user.is_superuser:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/aboutme/')
     article=Article.objects.get(pk=article_id)
     if request.method=='POST':
         form=Articleform(request.POST,instance=article)
