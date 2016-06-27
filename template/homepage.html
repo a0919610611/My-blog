@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+
 {% block css %}
 	<link rel="stylesheet"type="text/css" href="{% static 'css/homepage.css' %}"/>
 {% endblock %}
@@ -11,8 +12,11 @@
   {% endfor %}
 </ul>
 <!--<h1> Hello ,this is Leo's Blog </h1> -->
+    {% load paginate_tags %}
+{% paginate article_list 2 %}
 {% for article in article_list %}
 <h2><a href="{% url 'article:detail' article.pk %}"> {{article.title}}</a> </h2>
 {{article.content | safe}}
 {% endfor %}
+    {% include 'pagination.html' %}
 {% endblock %}
