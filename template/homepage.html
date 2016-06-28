@@ -23,19 +23,28 @@
     {% load paginate_tags %}
 {% paginate article_list 5 %}
 {% for article in article_list %}
-    <div style="background-color: white ;">
-    <div>
+    <div style="background-color: white">
+    <div style="background-color:#F1F1F1;">
     <h2 align="center"><a href="{% url 'article:detail' article.pk %}"> {{article.title}}</a> </h2>
         </div>
-        <div>
-        {{article.content | safe}}
+        <div >
+            {% if article.abstract %}
+           <p> {{ article.abstract }} </p>
+            {% else %}
+        {{article.content | safe | truncatechars_html:150  }}
+            {%  endif  %}
         </div>
         <hr>
         <div>
-        <a style="float: right ;background-color: #f7ecb5" href="{%  url 'article:detail' article.pk %}">閱讀更多</a>
+        <time>{{ article.create_time |date:"m/d,Y"}}</time>
+        <a style="float: right ;background-color: #f7ecb5; color:green"  href="{%  url 'article:detail' article.pk %}">閱讀更多</a>
 
         </div>
       <div class="spacer" style="clear: both;"></div>
+    </div>
+    {% empty %}
+    <div style="text-align: center">
+    <p>目前沒有任何文章!!</p>
     </div>
 {% endfor %}
                 {% include 'pagination.html' %}

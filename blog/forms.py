@@ -3,7 +3,7 @@ from article.models import *
 class Articleform(forms.ModelForm):
     class Meta:
         model=Article
-        fields=['title','category','content','status']
+        fields=['title','category','content','abstract','status']
 class BlogCommentForm(forms.ModelForm):
     class Meta:
         model=BlogComment
@@ -12,9 +12,9 @@ class BlogCommentForm(forms.ModelForm):
         widgets={
             'user_name':forms.TextInput(
                 attrs={
-                'class':'form-control',
-                'placeholder':'名子',
-                'aria-describedby':'sizing-addon1',
+                 'class':'form-control',
+                 'placeholder':'名子',
+                 'aria-describedby':'sizing-addon1',
             }),
             'user_email':forms.TextInput(
                 attrs={
