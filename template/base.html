@@ -29,16 +29,13 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-image: url("{% static 'img/background1.jpg' %}");
-<<<<<<< HEAD
         margin: 0px auto;
          padding-top: 70px;"
 {#         text-align: center;#}
-=======
 {#        background-image: {% static 'img/background1.jpg' %};#}
           margin: 0px auto;
          padding-top: 70px;"
          text-align: center;
->>>>>>> 59bc364be4d87c77b7a1e8ef39ea48f9d984b2d3
         width:100%;
     }
 </style>
@@ -49,10 +46,7 @@
             <ul class="nav nav-tabs">
               <li ><a href='{% url 'homepage' %}'>首頁</a></li>
               <li ><a href='{% url 'aboutme' %}'> 關於我 </a></li>
-<<<<<<< HEAD
             <li ><a href='mailto:a0919610611@gmail.com'> 聯絡我 </a></li>
-=======
->>>>>>> 59bc364be4d87c77b7a1e8ef39ea48f9d984b2d3
            <!--   <li><a href="{% url 'article:article_list' %}">Articles List</a></li> -->
               <ul class="nav navbar-nav navbar-right">
   {% if not request.user.is_superuser %}
