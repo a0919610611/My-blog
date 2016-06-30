@@ -1,0 +1,28 @@
+        <h2 align="center">有什麼想說的嘛?</h2>
+        <form method="post" action="{% url 'article:comment' article.pk %}">
+            {% csrf_token %}
+                <div class="row">
+                {% for field in form %}
+                    {{ field }}
+                    {{ field.errors }}
+                    <br>
+                {% endfor %}
+            <button type="submit" class="">Submit</button>
+                </div>
+        </form>
+        {% if comment_list %}
+        <p>All {{comment_list.count}} Comment{{comment_list.count|pluralize}}</p>
+        {% else %}
+        <h2 align="center">沒有評論</h2>
+        {% endif %}
+        <hr>
+        
+        {% for comment in comment_list %}
+
+                <span >{{ comment.user_name }}</span>
+                <time>Time:{{ comment.create_time }}</time>
+                <div>
+                    {{ comment.content }}
+                </div>
+            <hr>
+        {% endfor %}

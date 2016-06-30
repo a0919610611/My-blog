@@ -1,0 +1,43 @@
+<nav style="text-align: center">
+<ul class="pagination pagination-lg" >
+    {% if article_list.has_previous %}
+       <li> <a  aria-label="Previous" href="?page={{ article_list.previous_page_number }}">
+            <span aria-hidden="true">Prev</span></li>
+        </a><li>
+        {%  else  %}
+        <li class="disabled"><span aria-hidden="true" disabled>Prev</span></li>
+    {% endif %}
+    {% if first_page == current_page %}
+      <li class="active"> <span>1</span></li>
+    {% else %}
+       <li> <a href="?page=1" class="first-page">1</a></li>
+    {% endif %}
+    {% if pages_first > 2 %}
+        <li><span>...</span></li>
+    {% endif %}
+    {% for page in pages %}
+        {% if page == current_page %}
+           <li class="active"> <span >{{ page }}</span></li>
+        {% else %}
+            <li><a href="?page={{ page }}">{{ page }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if pages_last < last_page %}
+       <li> <span>...</span></li>
+    {% endif %}
+    {% if last_page != 1 %}
+        {% if last_page == current_page %}
+           <li class="active"> <span class="current">{{ last_page }}</span></li>
+        {% else %}
+            <li><a href="?page={{ last_page }}">{{ last_page }}</a></li>
+        {% endif %}
+    {% endif %}
+    {% if article_list.has_next %}
+    <li>    <a aria-label="Next" href="?page={{ article_list.next_page_number }}">
+            <span aria-hidden="true">Next</span>
+        </a> </li>
+        {%  else %}
+          <li class="disabled"><span aria-hidden="true" disabled>Next</span></li>
+    {% endif %}
+</ul>
+</nav>
