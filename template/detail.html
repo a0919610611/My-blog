@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+<<<<<<< HEAD
         <h1  align="center">{{article.title}} </h1>
     <div style="margin: 0px auto; width:70%">
+=======
+<h1 align="center">{{article.title}} </h1>
+    <div class="col-lg-12" >
+>>>>>>> 59bc364be4d87c77b7a1e8ef39ea48f9d984b2d3
 {{article.content | safe}}
 {% if request.user.is_superuser %}
 {% if not article.is_published %}

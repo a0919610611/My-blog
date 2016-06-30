@@ -2,8 +2,11 @@
 __pycache__/
 *.py[cod]
 *$py.class
+<<<<<<< HEAD
 *.sock
 *.ini
+=======
+>>>>>>> 59bc364be4d87c77b7a1e8ef39ea48f9d984b2d3
 
 # C extensions
 *.so

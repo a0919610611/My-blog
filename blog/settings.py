@@ -23,8 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'z55yult^o*w@je38dvj*n+o*y1b&d_di+(6*izj5%f$4a^y@-2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+<<<<<<< HEAD
 DEBUG = False
 #DEBUG=True
+=======
+#DEBUG = False
+DEBUG=True
+>>>>>>> 59bc364be4d87c77b7a1e8ef39ea48f9d984b2d3
 
 ALLOWED_HOSTS = ['*',]
 
@@ -32,6 +37,10 @@ ALLOWED_HOSTS = ['*',]
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
+=======
+    'django_admin_bootstrapped',
+>>>>>>> 59bc364be4d87c77b7a1e8ef39ea48f9d984b2d3
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +50,11 @@ INSTALLED_APPS = [
     'article',
     'markdown2',
     'pygments',
+<<<<<<< HEAD
     'dbbackup', 
+=======
+    'bootstrap3',
+>>>>>>> 59bc364be4d87c77b7a1e8ef39ea48f9d984b2d3
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -85,19 +98,28 @@ DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'blogdb',
+<<<<<<< HEAD
         'USER':'root',
         'PASSWORD':'7539518426s',
+=======
+        'USER':'dbadmin',
+        'PASSWORD':'123456',
+>>>>>>> 59bc364be4d87c77b7a1e8ef39ea48f9d984b2d3
         'OPTIONS': {
             'autocommit': True,
 
             },
     },
 }
+<<<<<<< HEAD
 DBBACKUP_STORAGE = 'dbbackup.storage.dropbox_storage'
 DBBACKUP_TOKENS_FILEPATH = '/home/fuyu0425/blog_backup'
 DBBACKUP_DROPBOX_APP_KEY = '3dgoydelxvoxxa5'
 DBBACKUP_DROPBOX_APP_SECRET = '7ax9lvhrgze98b0'
 DBBACKUP_DROPBOX_ACCESS_TYPE='app_folder'
+=======
+
+>>>>>>> 59bc364be4d87c77b7a1e8ef39ea48f9d984b2d3
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
